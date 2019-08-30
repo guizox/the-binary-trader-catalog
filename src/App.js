@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import SystemTable from '@bit/vguilherme.organization.system-table';
+import SystemTable from './components/SystemTable';
 import Pattern from './Pattern';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
