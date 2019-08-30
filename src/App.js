@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SystemTable from './components/SystemTable';
-import Pattern from './Pattern';
+import Pattern from './components/Pattern';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
