@@ -9,20 +9,21 @@ import Pattern from './components/Pattern';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import AccountSettings from './components/AccountSettings';
 
 const columns = [
-  {
-    id: 'pattern',
-    align: 'right',
-    label: 'Padrão',
-    component: content => <Pattern data={content} />
-  },
-  {
-    id: 'repeat',
-    align: 'left',
-    label: 'Repetições',
-    component: content => <h2 > { content } </h2>
-  },
+    {
+        id: 'pattern',
+        align: 'right',
+        label: 'Padrão',
+        component: content => <Pattern data={content} />
+    },
+    {
+        id: 'repeat',
+        align: 'left',
+        label: 'Repetições',
+        component: content => <h2 > {content} </h2>
+    },
 ];
 
 function App() {
@@ -40,53 +41,73 @@ function App() {
                     obj[`${arr[i]},${arr[i + 1]},${arr[i + 2]},${arr[i + 3]}`] = 1;
                 }
             }
+            const pattern = `${arr[i]},${arr[i + 1]},${arr[i + 2]},${arr[i + 3]}`;
+            if (pattern === 'blue,blue,blue,blue') {
+                while (arr[i + 4] === 'blue') i++;
+            }
+
+            if (pattern === 'pink,pink,pink,pink') {
+                while (arr[i + 4] === 'pink') i++;
+            }
         }
 
-        setState({ ...state, foundPattern: JSON.parse(JSON.stringify(obj))});
+        setState({ ...state, foundPattern: JSON.parse(JSON.stringify(obj)) });
     }
 
-  return (
-      <Grid container direction="row" spacing={2}>
-      <AppBar color="primary">
-           <Toolbar>
-            <Grid container direction="row" justify="center" alignContent="center" alignItems="center">
-                <Grid item xs={12} style={{ textAlign: 'center'}}>
-                    <Typography>
-                        The Binary Trader
+    return (
+        <Grid container direction="row" spacing={2}>
+            <AppBar color="primary">
+                <Toolbar>
+                    <Grid container direction="row" justify="center" alignContent="center" alignItems="center">
+                        <Grid item xs={12} style={{ textAlign: 'center' }}>
+                            <Typography>
+                                The Binary Trader
                     </Typography>
-                </Grid>
-            </Grid>
-          </Toolbar>
-      </AppBar> 
-      <Container fixed>
-          <Grid container direction="row" alignContent="center" justify="center" style={{ marginTop: 80}}>
-              <Grid item xs={12}>
-                <TextField value={state.input} onChange={ev => setState({ ...state, input: ev.target.value})} label="Padrões" placeholder="Coloque aqui os padrões" fullWidth ></TextField>
-              </Grid>
+                        </Grid>
+                    </Grid>
+                </Toolbar>
+            </AppBar>
+            <Container fixed>
+                <Grid container direction="row" alignContent="center" justify="center" style={{ marginTop: 80 }}>
+                    <AccountSettings />
+                    <Grid item xs={12}>
+                        <TextField
+                            value={state.input}
+                            margin="normal"
+                            variant="outlined"
+                            multiline
+                            onChange={ev => setState({ ...state, input: ev.target.value })}
+                            label="Padrões"
+                            placeholder="Coloque aqui os padrões"
+                            fullWidth
+                        >
+                        </TextField>
+                    </Grid>
 
-              <Grid item xs={12} style={{ textAlign: "center"}}>
-                  <Button onClick={onClick} >
-                      Encontre o melhor padrão
+                    <Grid item xs={12} style={{ textAlign: "center" }}>
+                        <Button onClick={onClick} >
+                            Encontre o melhor padrão
                   </Button>
-              </Grid>
-          </Grid>
+                    </Grid>
+                </Grid>
 
-          {
-              state.foundPattern &&
-              <Grid item xs={12}>
-              <SystemTable columns={columns} 
-              showPagination={false}
-              noDataText="Digite valores para encontrar os padrões."
-		      pagination={{}} 
-              rows={Object.keys(state.foundPattern).map(key => ({
-                  pattern: key,
-                  repeat: state.foundPattern[key]
-              }))} />
-              </Grid>
-          }
-      </Container>
-      </Grid>
-  );
+                {
+                    state.foundPattern &&
+                    <Grid item xs={12}>
+                        <SystemTable columns={columns}
+                            showPagination={false}
+                            noDataText="Digite valores para encontrar os padrões."
+                            pagination={{}}
+                            handleSort={() => { }}
+                            rows={Object.keys(state.foundPattern).map(key => ({
+                                pattern: key,
+                                repeat: state.foundPattern[key]
+                            }))} />
+                    </Grid>
+                }
+            </Container>
+        </Grid>
+    );
 }
 
 export default App;
