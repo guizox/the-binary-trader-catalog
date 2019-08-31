@@ -24,7 +24,8 @@ const styles = () => ({
     boxShadow: 'none'
   },
   table: {
-    minWidth: 750
+    Width: '100%',
+    overflow: 'hidden'
   },
   tableWrapper: {
     overflowX: 'auto'
