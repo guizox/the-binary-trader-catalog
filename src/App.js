@@ -134,7 +134,7 @@ function App() {
                                         {
                                             new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format([1,2,4,8].map(item => ({
                                                 nivel: item,
-                                                bidValue: parseFloat(accountSettingsState.state.bidValue.replace('$', '')) * item
+                                                bidValue: accountSettingsState.state.bidValue ? parseFloat(accountSettingsState.state.bidValue.replace('$', '')) * item : ''
                                             })).reduce((acc, cur) => acc + cur.bidValue, 0))
                                         }
                                     </h2>
