@@ -120,7 +120,7 @@ function App() {
                                 handleSort={() => { }}
                                 rows={[1,2,4,8].map(item => ({
                                     nivel: item,
-                                    bidValue: parseFloat(accountSettingsState.state.bidValue.replace('$', '')) * item
+                                    bidValue: accountSettingsState.state.bidValue ? parseFloat(accountSettingsState.state.bidValue.replace('$', '')) * item : ''
                                 }))} />
 
                             <Grid container direction="row" spacing={2} justify="space-around">
