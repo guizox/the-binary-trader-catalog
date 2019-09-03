@@ -11,6 +11,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AccountSettings from './components/AccountSettings';
 import AccountSettingsState from './components/AccountSettings/accountSettingsState';
+import DifferentPatterns from './components/DifferentPatterns';
 
 const columns = [
     {
@@ -29,12 +30,12 @@ const accountSettingsColumns = [
     {
         id: 'nivel',
         label: 'Nível',
-        component: content => <h2> {content} </h2>
+        component: content => <h3> {content} </h3>
     },
     {
         id: 'bidValue',
         label: 'Valor Aposta',
-        component: content => <h2> $ {content} </h2>
+        component: content => <h3> $ {content} </h3>
     }
 ]
 
@@ -112,7 +113,11 @@ function App() {
                 {
                     state.foundPattern &&
                     <Grid container direction="row" spacing={2} style={{ marginTop: 10}}>
-                        <Grid item md={4} xs={12}>
+                        <Grid item container direction="row" spacing={2} md={4} xs={12}>
+                            <Grid item xs={12}>
+                                <DifferentPatterns />
+                            </Grid>
+                            <Grid item xs={12}>
                             <SystemTable columns={accountSettingsColumns}
                                 showPagination={false}
                                 noDataText=""
@@ -122,6 +127,7 @@ function App() {
                                     nivel: item,
                                     bidValue: accountSettingsState.state.bidValue ? parseFloat(accountSettingsState.state.bidValue.replace('$', '')) * item : ''
                                 }))} />
+                            </Grid>
 
                             <Grid container direction="row" spacing={2} justify="space-around">
                                 <Grid item xs={4}>
