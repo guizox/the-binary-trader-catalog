@@ -24,7 +24,7 @@ const DifferentPatterns = () => (
         
 
         <Grid item xs={6}>
-                <h2>Ciclos Azuis</h2>
+                <h2>Ciclos Rosas</h2>
                 {   pinkPatterns.map((item, index) => (
                     <Grid item xs={12} container direction="row" spacing={2} key={`${item}-${index}`} style={{ padding: 10}}>
                         {item.map(candle => (
