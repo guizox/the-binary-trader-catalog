@@ -19,7 +19,8 @@ const AccountSettingsState = () => {
 
     const onBlur = () => {
         const { balance } = state;
-        const mutiplicator = balance < 150 ? 0.075 : balance > 150 && balance < 300 ? 0.065 : balance > 300 && balance < 500 ? 0.06 : balance > 500 && balance < 1000 ? 0.054 : 0.047;
+        const mutiplicator = balance < 150 ? 0.0075 : balance > 150 && balance < 300 ? 0.0062 : balance > 300 && balance < 500 ? 0.0058 : balance > 500 && balance < 1000 ? 0.0052 : 0.0045;
+        debugger;
         const bidValue = balance * mutiplicator > 0.35 ? balance * mutiplicator : 0.35;
         const stopWin = bidValue > 0.35 ? (((balance * mutiplicator) * 0.88) * 2) * 0.9 : 0.62;
         const stopLoss = (bidValue + (bidValue * 2) + (bidValue * 4) + (bidValue * 8)) * 0.8;
